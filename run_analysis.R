@@ -33,18 +33,18 @@ interac=interaction(subjects,label,drop=TRUE)
 kk=strsplit(names(tapply(data[,1],interac,mean)),"\\.")
 kk=(unlist(kk))
 dim(kk)=c(2,length(kk)/2)
-kk=as.data.frame(t(kk))
-kk[,1]=as.numeric(kk[,1])
+tidy=as.data.frame(t(kk))
+tidy[,1]=as.numeric(tidy[,1])
 
-# 9. For each variable add, to the data.frame, a column with its mean per activity-subject combination 
+# 9. For each variable add, to the tidy data.frame, a column with its mean per activity-subject combination 
 for (i in 1:dim(data)[2]){
-     kk=cbind(kk,as.numeric(tapply(data[,i],interac,mean)))
+     tidy=cbind(tidy,as.numeric(tapply(data[,i],interac,mean)))
 }
 
-# 10. Attach the column names to the data.frame
-names(kk)=c("subject","activity",features)
+# 10. Attach the column names to the tidy data.frame
+names(tidy)=c("subject","activity",features)
 
-# 11. Write the tidy data table
-write.table(kk,"tidyData.txt",row.names=FALSE,quote =FALSE,sep=";")
+# 11. Write the tidy data.frame to a file
+write.table(tidy,"tidyData.txt",row.names=FALSE,quote =FALSE,sep=";")
 
 
