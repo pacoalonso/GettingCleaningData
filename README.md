@@ -1,4 +1,4 @@
 GettingCleaningData
 ===================
 
-ourse project
+Course project
